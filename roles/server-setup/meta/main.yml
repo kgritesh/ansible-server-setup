@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Ritesh Kadmawala
+  description: Set of roles to do server hardening
+  company: Loanzen Technologies Private Ltd
+
+  license: MIT
+
+  min_ansible_version: 1.2
+
+dependencies:
+    - { role: apt }
+    - { role: sysctl }
+    - { role: users }
+    - { role: files }
+    - { role: alias }
+    - { role: nickjj.fail2ban }
+    - { role: ufw }
+    - { role: nickjj.sshd }

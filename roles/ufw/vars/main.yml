@@ -1,0 +1,20 @@
+security_dbservers_ufw_ports:
+  - rule: allow
+    port: 5432
+    proto: tcp
+
+  - rule: allow
+    port: 6379
+    proto: tcp
+
+security_appcode_ufw_ports:
+  - rule: allow
+    port: http
+    proto: tcp
+    src: any
+
+  - rule: allow
+    port: https
+    proto: tcp
+    src: any
+

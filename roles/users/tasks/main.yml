@@ -1,0 +1,14 @@
+- name: Generate Hash for default user password
+  local_action: command python scripts/gen_password.py {{user_default_password}}
+  register: result
+  sudo: False
+  tags: users
+
+- set_fact: user_default_password="{{result.stdout.split()[0]}}"
+  tags: users
+
+- set_fact: user_default_password_hash="{{result.stdout.split()[1]}}"
+  tags: users
+
+- include: 'users.yml'
+  tags: [users, admin_users]

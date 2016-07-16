@@ -1,0 +1,36 @@
+- name: Ensure that global alias file exists
+  file: path=/etc/bash.bashrc state=file owner=root group=root mode=0644
+
+- name: Create Default Aliases
+  lineinfile: dest={{ bash_alias_path }}
+              regexp="alias {{item.key}}='{{item.value}}'"
+              line="alias {{item.key}}='{{item.value}}'"
+              state=present
+              create: yes
+              mode: 0644
+  with_dict: default_aliases
+
+- name: Create Host Aliases
+  lineinfile: dest={{ bash_alias_path }}
+              regexp="alias {{item.key}}='{{item.value}}'"
+              line="alias {{item.key}}='{{item.value}}'"
+              state=present
+  with_dict: extra_aliases
+
+- name: Check if git is installed
+  command: dpkg-query -W git
+  register: deb_check
+  ignore_errors: True
+  tags: [git_check]
+
+- name: Create Git Aliases
+  command: git config --global alias.{{item.key}} '{{item.value}}'
+  with_dict: default_git_aliases
+  when: deb_check.stderr.find('no packages found') == -1
+  tags: [git_check]
+
+- name: Create Extra Git Aliases
+  command: git config --global alias.{{item.key}} '{{item.value}}'
+  with_dict: extra_git_aliases
+  when: deb_check.stderr.find('no packages found') == -1
+  tags: [git_check]

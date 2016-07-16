@@ -1,0 +1,32 @@
+- name: ensure ufw is installed
+  apt: pkg=ufw state=latest update_cache=true cache_valid_time={{ apt_cache_valid_time }}
+
+- name: ensure ufw is configured
+  template: src=ufw_config.j2 dest=/etc/default/ufw owner=root group=root mode=0644
+  notify:
+    - restart ufw
+
+
+- name: ensure ufw is enabled, disabled or reset
+  ufw: state={{ security_ufw_state }}
+  register: ufw_state
+  notify:
+    - restart ufw
+
+
+- name: ensure ufw ports are set
+  ufw: rule={{ item[1]['rule'] }} port={{ item[1]['port'] }} proto={{ item[1]['proto'] }} src={{ item[1]['src'] | default(item[0]) }} state=reloaded
+  with_nested:
+    - groups['webservers']
+    - security_ufw_ports + default_security_ufw_ports
+  tags: [python_servers_ufw]
+
+  notify:
+    - restart ufw
+
+
+
+#- name: echo all the webservers
+
+
+

@@ -1,0 +1,13 @@
+---
+
+security_ufw_state: enabled
+
+security_ipv6: yes
+
+default_security_ufw_ports:
+  - rule: allow
+    port: "{{ sshd_port }}"
+    proto: tcp
+    src: any
+
+

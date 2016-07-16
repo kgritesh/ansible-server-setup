@@ -1,0 +1,12 @@
+---
+default_packages:
+    - rkhunter
+    - chkrootkit
+    - curl
+    - debconf
+    - build-essential
+    - wget
+    - libcurl4-openssl-dev
+    - iptraf
+
+apt_cache_valid_time: 86400
