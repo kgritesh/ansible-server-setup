@@ -1,32 +1,43 @@
+---
+
+# Adapted from https://github.com/weareinteractive/ansible-ufw
 - name: ensure ufw is installed
-  apt: pkg=ufw state=latest update_cache=true cache_valid_time={{ apt_cache_valid_time }}
+  apt: pkg=ufw state=latest update_cache=true cache_valid_time={{apt_cache_valid_time}}
+
+- name: Resetting Firewall
+  ufw: state=reset
+
+- name: ensure ufw ports are set
+  ufw:
+    delete: '{{item.delete | default(omit)}}'
+    direction: '{{item.direction | default(omit)}}'
+    from_ip: '{{item.from_ip | default(omit)}}'
+    from_port: '{{item.from_port | default(omit)}}'
+    insert: '{{item.insert | default(omit)}}'
+    interface: '{{item.interface | default(omit)}}'
+    log: '{{item.log | default(omit)}}'
+    logging: '{{item.logging | default(omit)}}'
+    name: '{{item.name | default(omit)}}'
+    policy: '{{item.policy | default(omit)}}'
+    port: '{{item.port | default(omit)}}'
+    proto: '{{item.proto | default(omit)}}'
+    rule: '{{item.rule | default("allow")}}'
+    state: '{{item.state | default(omit)}}'
+    to_ip: '{{item.to_ip | default(omit)}}'
+    to_port: '{{item.to_port | default(omit)}}'
+  with_flattened:
+    - '{{default_ufw_ports}}'
+    - '{{group_ufw_ports}}'
+    - '{{host_ufw_ports}}'
+    - '{{extra_ufw_ports}}'
+
+  tags: [ufw, ufw_ports]
 
 - name: ensure ufw is configured
   template: src=ufw_config.j2 dest=/etc/default/ufw owner=root group=root mode=0644
   notify:
     - restart ufw
 
-
-- name: ensure ufw is enabled, disabled or reset
-  ufw: state={{ security_ufw_state }}
-  register: ufw_state
-  notify:
-    - restart ufw
-
-
-- name: ensure ufw ports are set
-  ufw: rule={{ item[1]['rule'] }} port={{ item[1]['port'] }} proto={{ item[1]['proto'] }} src={{ item[1]['src'] | default(item[0]) }} state=reloaded
-  with_nested:
-    - groups['webservers']
-    - security_ufw_ports + default_security_ufw_ports
-  tags: [python_servers_ufw]
-
-  notify:
-    - restart ufw
-
-
-
-#- name: echo all the webservers
-
-
+- name: Setting Ufw State
+  ufw: state='{{ ufw_state }}'
 

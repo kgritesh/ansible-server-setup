@@ -21,6 +21,12 @@ default_aliases:
   l: 'ls -lBohc'
   top: 'atop'
 
+group_aliases: {}
+
+host_aliases: {}
+
+extra_aliases: {}
+
 default_git_aliases:
     st: 'status'
     ci: 'commit'
@@ -31,5 +37,11 @@ default_git_aliases:
     last: 'log -1 HEAD'
     df: 'diff'
     lo: 'log --oneline'
+    
+group_git_aliases: {}
+
+host_git_aliases: {}
+
+extra_git_aliases: {}
 
 bash_alias_path: '/etc/profile.d/00-aliases.sh'

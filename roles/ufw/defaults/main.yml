@@ -1,13 +1,27 @@
 ---
 
-security_ufw_state: enabled
-
-security_ipv6: yes
-
-default_security_ufw_ports:
-  - rule: allow
-    port: "{{ sshd_port }}"
+default_ufw_ports:
+  - rule: limit
+    port: "{{ ssh_port }}"
     proto: tcp
-    src: any
+
+group_ufw_ports: []
+
+host_ufw_ports: []
+
+extra_ufw_ports: []
 
 
+ufw_ipv6: "yes"
+ufw_default_input_policy: DROP
+
+ufw_default_output_policy: ACCEPT
+
+ufw_default_forward_policy: DROP
+
+ufw_default_application_policy: SKIP
+
+# firewall state: enabled | disabled
+ufw_state: enabled
+
+ufw_logging: "off"

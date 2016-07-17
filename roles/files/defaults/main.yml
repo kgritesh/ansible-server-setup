@@ -1,2 +1,9 @@
 default_files: []
+
+group_files: []
+
+host_files: []
+
+extra_files: []
+
 ownership_change_list: []

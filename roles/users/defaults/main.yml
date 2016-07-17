@@ -2,9 +2,9 @@
 # Create a group for every user and make that their primary group
 users_create_per_user_group: true
 
-# If we're not creating a per-user group, then this is the group all users
+# If we're not creating a per-user group, then this is the group alls users
 # belong to
-users_default_groups_list: []
+user_default_groups: []
 
 # The default shell for a user if none is specified
 users_default_shell: /bin/bash
@@ -14,9 +14,14 @@ users_default_shell: /bin/bash
 users_create_homedirs: true
 
 # Lists of users to create and delete
-users: []
-users_deleted: []
-sudo_users: []
+users_default: []
+
+group_users: []
+
+host_users: []
+
+extra_users: []
+
 
 users_default_password: "PASSWORD"
 

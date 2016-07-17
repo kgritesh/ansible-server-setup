@@ -2,10 +2,14 @@
 - name: Files | Make sure all required files are present
   file: path={{item.path}} state={{item.state}}
         owner={{item.owner}} group={{item.group}} mode={{item.mode}}
-  with_items: default_files + extra_files
+  with_flattened:
+    - "{{ default_files }}"
+    - "{{ group_files }}"
+    - "{{ host_files }}"
+    - "{{ extra_files }}"
 
 - name: Change ownership of directories
-  sudo: true
-  sudo_user: root
+  become: true
+  become_user: root
   command: chown -R {{item.user}} {{item.path}}
   with_items: ownership_change_list

@@ -8,11 +8,17 @@
   action: apt pkg=unattended-upgrades state=present
 
 - name: Adjust APT update intervals
-  action: copy src=apt_periodic dest=/etc/apt/apt.conf.d/10periodic
+  action: copy src=apt_periodic.txt dest=/etc/apt/apt.conf.d/10periodic
+  tags: [apt, update_intervals]
 
 - name: Make sure unattended-upgrades only installs from $ubuntu_release-security
   action: lineinfile dest=/etc/apt/apt.conf.d/50unattended-upgrades regexp="$ubuntu_release-updates" state=absent
 
 - name: Install list of Basic Packages
   apt: pkg={{item}} state=latest update_cache=true cache_valid_time={{ apt_cache_valid_time }}
-  with_items: default_packages + extra_packages
+  with_flattened:
+    - '{{default_packages}}'
+    - '{{group_packages}}'
+    - '{{host_packages}}'
+    - '{{extra_packages}}'
+  tags: [apt, install_packages]

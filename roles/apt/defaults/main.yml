@@ -9,4 +9,10 @@ default_packages:
     - libcurl4-openssl-dev
     - iptraf
 
+group_packages: []
+
+host_packages: []
+
+extra_packages: []
+
 apt_cache_valid_time: 86400

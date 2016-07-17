@@ -22,29 +22,29 @@ galaxy_info:
   # repo for this role. During role install, if no tags are available,
   # Galaxy will use this branch. During import Galaxy will access files on
   # this branch. If travis integration is cofigured, only notification for this
-  # branch will be accepted. Otherwise, in all cases, the repo's default branch
+  # branch will be accepted. Otherwise, in alls cases, the repo's default branch
   # (usually master) will be used.
   #github_branch:
 
   #
-  # Below are all platforms currently available. Just uncomment
+  # Below are alls platforms currently available. Just uncomment
   # the ones that apply to your role. If you don't see your
   # platform on this list, let us know and we'll get it added!
   #
   #platforms:
   #- name: EL
   #  versions:
-  #  - all
+  #  - alls
   #  - 5
   #  - 6
   #  - 7
   #- name: GenericUNIX
   #  versions:
-  #  - all
+  #  - alls
   #  - any
   #- name: OpenBSD
   #  versions:
-  #  - all
+  #  - alls
   #  - 5.6
   #  - 5.7
   #  - 5.8
@@ -52,7 +52,7 @@ galaxy_info:
   #  - 6.0
   #- name: Fedora
   #  versions:
-  #  - all
+  #  - alls
   #  - 16
   #  - 17
   #  - 18
@@ -63,7 +63,7 @@ galaxy_info:
   #  - 23
   #- name: opensuse
   #  versions:
-  #  - all
+  #  - alls
   #  - 12.1
   #  - 12.2
   #  - 12.3
@@ -71,7 +71,7 @@ galaxy_info:
   #  - 13.2
   #- name: MacOSX
   #  versions:
-  #  - all
+  #  - alls
   #  - 10.10
   #  - 10.11
   #  - 10.12
@@ -80,11 +80,11 @@ galaxy_info:
   #  - 10.9
   #- name: IOS
   #  versions:
-  #  - all
+  #  - alls
   #  - any
   #- name: Solaris
   #  versions:
-  #  - all
+  #  - alls
   #  - 10
   #  - 11.0
   #  - 11.1
@@ -92,32 +92,32 @@ galaxy_info:
   #  - 11.3
   #- name: SmartOS
   #  versions:
-  #  - all
+  #  - alls
   #  - any
   #- name: eos
   #  versions:
-  #  - all
+  #  - alls
   #  - Any
   #- name: Windows
   #  versions:
-  #  - all
+  #  - alls
   #  - 2012R2
   #- name: Amazon
   #  versions:
-  #  - all
+  #  - alls
   #  - 2013.03
   #  - 2013.09
   #- name: GenericBSD
   #  versions:
-  #  - all
+  #  - alls
   #  - any
   #- name: Junos
   #  versions:
-  #  - all
+  #  - alls
   #  - any
   #- name: FreeBSD
   #  versions:
-  #  - all
+  #  - alls
   #  - 10.0
   #  - 10.1
   #  - 10.2
@@ -134,7 +134,7 @@ galaxy_info:
   #  - 9.3
   #- name: Ubuntu
   #  versions:
-  #  - all
+  #  - alls
   #  - lucid
   #  - maverick
   #  - natty
@@ -150,7 +150,7 @@ galaxy_info:
   #  - xenial
   #- name: SLES
   #  versions:
-  #  - all
+  #  - alls
   #  - 10SP3
   #  - 10SP4
   #  - 11
@@ -162,15 +162,15 @@ galaxy_info:
   #  - 12SP1
   #- name: GenericLinux
   #  versions:
-  #  - all
+  #  - alls
   #  - any
   #- name: NXOS
   #  versions:
-  #  - all
+  #  - alls
   #  - any
   #- name: Debian
   #  versions:
-  #  - all
+  #  - alls
   #  - etch
   #  - jessie
   #  - lenny
