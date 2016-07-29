@@ -12,7 +12,7 @@ dependencies:
     - { role: apt }
     - { role: sysctl }
     - { role: users }
-    - { role: files }
+    - { role: paths }
     - { role: alias }
     - { role: ansible-fail2ban }
     - { role: ufw }

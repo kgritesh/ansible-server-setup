@@ -5,6 +5,10 @@ default_ufw_ports:
     port: "{{ ssh_port }}"
     proto: tcp
 
+  - rule: limit
+    port: "{{ ansible_ssh_port }}"
+    proto: tcp
+
 group_ufw_ports: []
 
 host_ufw_ports: []

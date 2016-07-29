@@ -12,4 +12,4 @@
   become: true
   become_user: root
   command: chown -R {{item.user}} {{item.path}}
-  with_items: ownership_change_list
+  with_items: "{{ownership_change_list}}"
