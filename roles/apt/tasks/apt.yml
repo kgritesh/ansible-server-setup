@@ -1,8 +1,8 @@
-- name: Aptitude | Update the apt cache
-  apt: update_cache=yes
+- name: install apt requirements
+  apt: pkg=aptitude
 
 - name: Aptitude | Upgrade the installed packages
-  apt: upgrade=yes
+  apt: upgrade=full update_cache=yes
 
 - name: Install unattended-upgrades
   action: apt pkg=unattended-upgrades state=present
