@@ -2,13 +2,14 @@
 # tasks file for server-setup
 - name: copy old ssh port
   set_fact:
-    old_ssh_port: '{{ansible_ssh_port}}'
-  when: 'ansible_ssh_port not in ssh_server_ports'
+    old_ssh_port: '{{ansible_port}}'
+  when: default_ssh_configured is defined
   tags: ['server-setup']
 
 - name: Reset ssh port
   set_fact:
-    ansible_ssh_port={{ssh_server_ports[0]}}
+    ansible_port={{configured_port}}
+    ansible_user={{configured_user}}
     ask_pass=False
-  when: 'ansible_ssh_port not in ssh_server_ports'
+  when: default_ssh_configured is defined
   tags: ['server-setup']
