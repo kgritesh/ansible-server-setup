@@ -1,5 +1,6 @@
 - name: Ensure that global alias file exists
-  file: path=/etc/profile.d/00-aliases.sh state=file owner=root group=root mode=0644
+  copy: dest=/etc/profile.d/00-aliases.sh force=no content=''
+        owner=root group=root  mode=0644
 
 - name: Create Default Aliases
   lineinfile: dest={{ bash_alias_path }}

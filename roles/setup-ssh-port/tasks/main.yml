@@ -39,10 +39,11 @@
   set_fact:
     ansible_port: "22"
     ansible_user: "{{ default_user }}"
+    ansible_ssh_port: "22"
+    ansible_ssh_user: "{{ default_user }}"
+    default_ssh_configured: True
   when: default_ssh is defined and default_ssh.state == "started"
   register: ssh_port_set
-  register: default_ssh_configured
-
 
 # If unreachable on port 22, check if we're able to reach
 # {{ inventory_hostname }} on {{ ansible_port }} provided by the inventory
@@ -72,3 +73,4 @@
   fail:
     msg: "The SSH port is neither 22 or {{ ansible_port }}."
   when: ssh_port_set is undefined
+

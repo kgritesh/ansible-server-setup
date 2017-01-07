@@ -9,7 +9,6 @@ galaxy_info:
   min_ansible_version: 1.2
 
 dependencies:
-    - { roles: setup-ssh-port }
     - { role: apt }
     - { role: sysctl }
     - { role: users }
