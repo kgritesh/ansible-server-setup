@@ -1,6 +1,5 @@
 ---
 default_packages:
-    -
     - rkhunter
     - chkrootkit
     - curl
@@ -10,6 +9,7 @@ default_packages:
     - libcurl4-openssl-dev
     - iptraf
     - python-dev
+    - htop
 
 group_packages: []
 

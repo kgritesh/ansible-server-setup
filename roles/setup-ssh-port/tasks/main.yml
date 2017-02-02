@@ -29,19 +29,21 @@
     state: "started"
     host: "{{ inventory_hostname }}"
     connect_timeout: "5"
-    timeout: "10"
+    timeout: "5"
   delegate_to: "localhost"
   ignore_errors: "yes"
   register: default_ssh
 
 # If reachable, continue the following tasks with this port
-- name: Set inventory ansible_port to default
+- name: Set inventory ansible_port, ansible user and server setup to default
   set_fact:
     ansible_port: "22"
     ansible_user: "{{ default_user }}"
     ansible_ssh_port: "22"
     ansible_ssh_user: "{{ default_user }}"
     default_ssh_configured: True
+    host_key_checking: False
+    server_setup: True
   when: default_ssh is defined and default_ssh.state == "started"
   register: ssh_port_set
 
@@ -60,10 +62,20 @@
   register: configured_ssh
   when: default_ssh is defined and default_ssh.state is undefined
 
+- name:
+  debug: var={{configured_ssh}}
+
+- name: If Using inventory-provided SSH port then disable server setup
+        as most likely server is already setup
+  set_fact:
+      server_setup: False
+  when: configured_ssh is defined and configured_ssh.state is defined and
+          configured_ssh.state == "started"
+
 # If {{ ansible_port }} is reachable, we don't need to do anything special
 - name: SSH port is configured properly
   debug:
-    msg: "SSH port is configured properly"
+    msg: "SSH port is configured properly to {{ansible_ssh_port}}"
   when: configured_ssh is defined and configured_ssh.state is defined and
         configured_ssh.state == "started"
   register: ssh_port_set
