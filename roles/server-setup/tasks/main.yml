@@ -13,3 +13,7 @@
     ask_pass=False
   when: default_ssh_configured is defined
   tags: ['server-setup']
+
+- name: Flush Handlers
+  meta: flush_handlers
+

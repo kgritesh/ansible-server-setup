@@ -5,3 +5,6 @@
 
 - src: dev-sec.ssh-hardening
   path: roles/library
+
+- src: tersmitten.hostname
+  path: roles/library
